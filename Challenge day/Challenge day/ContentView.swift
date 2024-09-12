@@ -72,7 +72,11 @@ struct ContentView: View {
                 }
                 
             }
+            
+            .navigationTitle("Temperature Calculator")
+            .navigationBarTitleDisplayMode(.inline)
         }
+        
     }
 }
 
