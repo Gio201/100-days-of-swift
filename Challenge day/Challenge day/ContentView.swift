@@ -41,21 +41,36 @@ struct ContentView: View {
     }
     
     let units = ["Celsius", "Fahrenheit", "Kelvin"]
-
+    
     var body: some View {
         NavigationView {
             Form {
                 Section {
                     TextField("Temperature", value: $temp, format: .number)
-                    }
+                }
                 
-                Section {
+                Section("Pick a unit - Input"){
                     Picker("Select unit", selection: $inputTemperatureUnit) {
                         ForEach(units, id: \.self) {
                             Text($0)
                         }
                     }
+                    .pickerStyle(.segmented)
                 }
+                
+                Section("Pick a unit - output"){
+                    Picker("Select unit", selection: $outputTemperatureUnit) {
+                        ForEach(units, id: \.self) {
+                            Text($0)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                }
+                
+                Section {
+                    Text(convertedTemp.formatted())
+                }
+                
             }
         }
     }
