@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var checkamount = 0.0
     @State private var numberOfPeople = 2
     @State private var tipPercentage = 20
+    @FocusState private var amountIsFocused: Bool
     
     var totalPerPerson: Double {
         let peopleCount = Double(numberOfPeople + 2)
@@ -31,6 +32,7 @@ struct ContentView: View {
                 Section {
                     TextField("Amount", value: $checkamount, format: .currency(code: Locale.current.currency?.identifier ?? "EUR") )
                         .keyboardType(.decimalPad)
+                        .focused($amountIsFocused)
                     
                     Picker("Number Of People", selection: $numberOfPeople) {
                         ForEach(2..<21) {
@@ -52,6 +54,13 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Project 1")
+            .toolbar {
+                if amountIsFocused {
+                    Button("Done") {
+                        amountIsFocused = false
+                    }
+                }
+            }
         }
     }
 }
