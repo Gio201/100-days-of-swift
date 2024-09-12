@@ -34,7 +34,6 @@ struct ContentView: View {
         
     }
     
-
     let tipPercentages = [10, 15, 20, 25, 0]
     
     var body: some View {
@@ -42,7 +41,7 @@ struct ContentView: View {
             Form {
                 Section {
                     TextField("Amount", value: $checkamount, format: .currency(code: Locale.current.currency?.identifier ?? "EUR") )
-                        .keyboardType(.decimalPad)
+                        .keyboardType(.decimalPad)	
                         .focused($amountIsFocused)
                     
                     Picker("Number Of People", selection: $numberOfPeople) {
