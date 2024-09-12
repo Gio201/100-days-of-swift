@@ -20,7 +20,6 @@
 		683E0EDB2C8EE04800F230A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		683E0EDD2C8EE04800F230A9 /* _00daysofswiftui.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = _00daysofswiftui.entitlements; sourceTree = "<group>"; };
 		683E0EDF2C8EE04800F230A9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		683E0EEE2C8F1C7C00F230A9 /* Day 1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Day 1.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +36,6 @@
 		683E0ECB2C8EE04700F230A9 = {
 			isa = PBXGroup;
 			children = (
-				683E0EEE2C8F1C7C00F230A9 /* Day 1.swift */,
 				683E0ED62C8EE04700F230A9 /* 100daysofswiftui */,
 				683E0ED52C8EE04700F230A9 /* Products */,
 			);
