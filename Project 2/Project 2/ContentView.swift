@@ -5,6 +5,12 @@
 //  Created by WeMa Intern on 13/09/2024.
 //
 
+// challenge 1 | Add an @State property to store the user’s score, modify it when they get an answer right or wrong, then display it in the alert and in the score label.
+
+// challenge 2 | When someone chooses the wrong flag, tell them their mistake in your alert message – something like “Wrong! That’s the flag of France,” for example.
+
+// challenge 3 | Make the game show only 8 questions, at which point they see a final alert judging their score and can restart the game.
+
 import SwiftUI
 
 struct ContentView: View {
@@ -13,6 +19,8 @@ struct ContentView: View {
     
     @State private var showingScore = false
     @State private var scoreTitle = ""
+    
+    @State private var score = 0
     
     var body: some View {
         ZStack {
@@ -56,7 +64,7 @@ struct ContentView: View {
                 Spacer()
                 Spacer()
                 
-                Text("Your score is ???")
+                Text("Your score is \(self.score)")
                     .foregroundStyle(.white)
                     .font(.title.bold())
                 
@@ -73,8 +81,11 @@ struct ContentView: View {
     func flagTapped(_ number: Int) {
         if number == correctAnswer {
             scoreTitle = "Correct"
+            score += 1
+            
         } else {
             scoreTitle = "Wrong"
+            score -= 1
         }
         
         showingScore = true
