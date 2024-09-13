@@ -22,6 +22,10 @@ struct ContentView: View {
     
     @State private var score = 0
     
+    @State private var gameOver = false
+    let maxGames = 8
+    @State private var currentRound = 1
+    
     var body: some View {
         ZStack {
             RadialGradient(stops: [
@@ -68,6 +72,8 @@ struct ContentView: View {
                     .foregroundStyle(.white)
                     .font(.title.bold())
                 
+                Text("You're on round \(self.currentRound)")
+                    .foregroundStyle(.white)
                 Spacer()
             }
         }
@@ -76,6 +82,13 @@ struct ContentView: View {
         } message: {
             
         }
+        
+        .alert(scoreTitle, isPresented: $gameOver) {
+            Button("Restart", action: restartGame)
+        } message: {
+            
+        }
+        
     }
     
     func flagTapped(_ number: Int) {
@@ -89,11 +102,30 @@ struct ContentView: View {
         }
         
         showingScore = true
+
+
     }
     func askQuestion() {
+        if currentRound == maxGames {
+            gameOver = true
+            scoreTitle = "You win your end score is: \(self.score)"
+            
+        } else {
+            countries.shuffle()
+            correctAnswer = Int.random(in: 0...2)
+            currentRound += 1
+            
+        }
+    }
+    
+    func restartGame() {
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
+        score = 0
+        currentRound = 1
+        
     }
+
 }
 
 #Preview {
