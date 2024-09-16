@@ -65,7 +65,7 @@ struct ContentView: View {
                 
                 Section("Total amount") {
                     Text(totalAmount, format: .currency(code: Locale.current.currency?.identifier ?? "EUR") )
-                    
+                        .foregroundStyle(tipPercentage == 0 ? .red : .black)
                 }
             }
             .navigationTitle("Project 1")
