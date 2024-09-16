@@ -11,7 +11,24 @@
 
 // challenge 3 | Make the game show only 8 questions, at which point they see a final alert judging their score and can restart the game.
 
+// Challenge from project 3 | Go back to project 2 and replace the Image view used for flags with a new FlagImage() view that renders one flag image using the specific set of modifiers we had.
+
 import SwiftUI
+
+struct FlagImage: View {
+    var country: String
+    
+    init(of country: String) {
+        self.country = country
+    }
+    
+    var body: some View {
+        Image(country)
+            .renderingMode(.original)
+            .clipShape(.capsule)
+            .shadow(radius: 5)    }
+}
+
 
 struct ContentView: View {
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Spain", "UK", "Ukraine", "US"].shuffled()
@@ -25,6 +42,7 @@ struct ContentView: View {
     @State private var gameOver = false
     let maxGames = 8
     @State private var currentRound = 1
+    
     
     var body: some View {
         ZStack {
@@ -54,12 +72,11 @@ struct ContentView: View {
                         Button {
                             flagTapped(number)
                         } label: {
-                            Image(countries[number])
-                                .clipShape(.capsule)
-                                .shadow(radius: 5)
+                            FlagImage(of: countries[number])
                         }
                     }
                 }
+
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 20)
                 .background(.regularMaterial)
