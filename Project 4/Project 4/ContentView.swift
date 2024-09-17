@@ -45,24 +45,24 @@ struct ContentView: View {
                 Section(header: Text("Daily coffee intake")) {
                     Picker("Amount of coffee", selection: $coffeeAmount) {
                         ForEach(1..<21) {
-                            Text("\($0) cups")
+                            Text("\($0) cup(s)")
                         }
                     }
                 }
             }
             .navigationTitle("BetterRest")
-            .toolbar {
-                Button("Calculate", action: calculateBedtime)
-            }
-            .alert(alertTitle, isPresented: $showingAlert) {
-                Button("OK") { }
-            } message: {
-                Text(alertMessage)
+        }
+        
+        Section {
+            VStack {
+                Text("Recommended bedtime")
+                    .foregroundStyle(.red)
+                Text(calculateBedtime())
             }
         }
     }
     
-    func calculateBedtime() {
+    func calculateBedtime() -> String {
         do {
             let config = MLModelConfiguration()
             let model = try SleepCalculator(configuration: config)
@@ -75,18 +75,13 @@ struct ContentView: View {
             
             let sleepTime = wakeUp - predicition.actualSleep
             
-            alertTitle = "Your ideal bedtime is.."
-            alertMessage = sleepTime.formatted(date: .omitted, time: .shortened)
-            
+            return sleepTime.formatted(date: .omitted, time: .shortened)
         } catch {
-            alertTitle = "Error"
-            alertMessage = "Sorry, there was a problem calculating your bedtime."
+            return "error"
         }
         
-        showingAlert = true
     }
 }
-
 #Preview {
     ContentView()
 }
