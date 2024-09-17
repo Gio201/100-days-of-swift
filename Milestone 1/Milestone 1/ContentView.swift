@@ -74,6 +74,18 @@ struct ContentView: View {
                 
             }
         }
+        .alert(scoreTitle, isPresented: $isShowingScore) {
+            Button("Continue", action: askQuestion)
+        } message: {
+            
+        }
+        
+        .alert(scoreTitle, isPresented: $gameOver) {
+            Button("Restart", action: restartGame)
+        } message: {
+            Text("Your final score is \(points) out of \(maxRound)" )
+            
+        }
     }
     
     func moveResult(_ player: Int) -> String {
