@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    var game = ["🪨", "🧻", "✂️"]
+    private let game = ["🪨", "🧻", "✂️"]
     private let maxRound = 10
     @State private var points = 0
     @State private var currentRound = 1
@@ -44,35 +44,62 @@ struct ContentView: View {
                     .padding(.bottom, -10)
                 
                 
-            HStack(spacing: 0){
-                Text("How to \(howToWin ? "win" : "lose") this round") }
-            .font(.title2.bold())
-            .padding(10)
+                HStack(spacing: 0){
+                    Text("How to \(howToWin ? "win" : "lose") this round") }
+                .font(.title2.bold())
+                .padding(10)
                 
-            Spacer()
+                Spacer()
                 
-            HStack(spacing: 30){
-                ForEach(0..<3) { number in Button {
-                } label: {
-                    Text(game[number])
-                        .font(.system(size: 60))
+                HStack(spacing: 30){
+                    ForEach(0..<3) { number in Button {
+                        choiceTapped(number)
+                    } label: {
+                        Text(game[number])
+                            .font(.system(size: 60))
+                    }
+                    }
                 }
-            }
-        }
                 
-            Spacer()
+                Spacer()
                 
-            Text("Round: \(currentRound)/\(maxRound)")
-                .font(.title.bold())
+                Text("Round: \(currentRound)/\(maxRound)")
+                    .font(.title.bold())
                 
-            Text("Score: \(self.points)")
+                Text("Score: \(self.points)")
                     .padding(.top, -10)
                     .font(.title2)
                 
-            Spacer()
+                Spacer()
                 
             }
         }
+    }
+    
+    func moveResult(_ player: Int) -> String {
+        if playerPick == botChoice { return "Draw" }
+        
+        let winningMoves = [1, 2, 0]
+        let didWin: Bool
+        
+        if howToWin {
+            didWin = playerPick == winningMoves[botChoice]
+        } else {
+            didWin = botChoice == winningMoves[playerPick]
+        }
+        
+        return didWin ? "Correct" : "Wrong"
+    }
+    
+    func choiceTapped(_ number: Int) {
+        playerPick = number
+        
+        scoreTitle = moveResult(playerPick)
+        points = scoreTitle == "Draw" ? points : scoreTitle == "Correct" ? points + 1 : points - 1
+        
+        points = points < 0 ? 0 : points
+        
+        isShowingScore = true
     }
     
     func askQuestion() {
@@ -84,15 +111,16 @@ struct ContentView: View {
             botChoice = Int.random(in: 0...2)
         }
     }
-    
-    func restartGame() {
-        howToWin = Bool.random()
-        botChoice = Int.random(in: 0...2)
-        points = 0
-        currentRound = 1
+        
+        
+        func restartGame() {
+            howToWin = Bool.random()
+            botChoice = Int.random(in: 0...2)
+            points = 0
+            currentRound = 1
+        }
     }
-}
-
-#Preview {
-    ContentView()
-}
+    
+    #Preview {
+        ContentView()
+    }
