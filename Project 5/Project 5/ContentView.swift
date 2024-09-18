@@ -9,7 +9,7 @@
 // Challenge 2 | Add a toolbar button that calls startGame(), so users can restart with a new word whenever they want to.
 //
 // Challenge 3 | Put a text view somewhere so you can track and show the player’s score for a given root word. How you calculate score is down to you, but something involving number of words and their letter count would be reasonable.
-//
+///
 
 import SwiftUI
 
@@ -70,6 +70,16 @@ struct ContentView: View {
             return
         }
         
+        guard isGoodLenght(word: answer) else {
+            wordError(title: "Word is to short", message: "More characters are needed!")
+            return
+        }
+        
+        guard isSameWord(word: answer) else {
+            wordError(title: "main word", message: "You can't use the the main word")
+            return
+        }
+        
         withAnimation {
             usedWords.insert(answer, at: 0)
         }
@@ -105,7 +115,7 @@ struct ContentView: View {
         
         return true
     }
-    
+
     func isReal(word: String) -> Bool {
         let checker = UITextChecker()
         let range = NSRange(location: 0, length: word.utf16.count)
@@ -118,6 +128,16 @@ struct ContentView: View {
         errorMessage = message
         showingError = true
     }
+    
+    func isGoodLenght(word: String) -> Bool {
+        return word.count > 3
+    }
+    
+    func isSameWord(word: String) -> Bool {
+        return word != rootWord
+    }
+    
+    
 }
 
 #Preview {
