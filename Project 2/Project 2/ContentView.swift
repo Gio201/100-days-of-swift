@@ -43,6 +43,10 @@ struct ContentView: View {
     let maxGames = 8
     @State private var currentRound = 1
     
+    @State private var rotateAmount = [0.0, 0.0, 0.0]
+    @State private var opacityAmount = [1.0, 1.0, 1.0]
+    @State private var scaleAmount = [1.0, 1.0, 1.0]
+    
     
     var body: some View {
         ZStack {
@@ -73,6 +77,10 @@ struct ContentView: View {
                             flagTapped(number)
                         } label: {
                             FlagImage(of: countries[number])
+                                .rotation3DEffect(Angle(degrees: rotateAmount[number]), axis: (x: 0, y: 1, z: 0))
+                                .opacity(opacityAmount[number])
+                                .animation(.default, value: scaleAmount)
+                                
                         }
                     }
                 }
@@ -113,12 +121,37 @@ struct ContentView: View {
             scoreTitle = "Correct"
             score += 1
             
-        } else {
+            rotateAmount[number] += 360
+            
+            for notTapped in 0..<3 where notTapped != number {
+                opacityAmount[notTapped] = 0.25
+                scaleAmount[notTapped] = 0.25
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                askQuestion()
+            }
+            
+            } else {
             scoreTitle = "Wrong! That’s the flag of \(countries[number])"
-            score -= 1
+            score += 1
+            
+            rotateAmount[number] += 360
+            
+            for notTapped in 0..<3 where notTapped != number {
+                opacityAmount[notTapped] = 0.25
+                scaleAmount[notTapped] = 0.25
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                showingScore = true
+            }
         }
         
-        showingScore = true
+        if number != correctAnswer {
+            showingScore = true
+        }
+    
 
 
     }
@@ -131,6 +164,8 @@ struct ContentView: View {
             countries.shuffle()
             correctAnswer = Int.random(in: 0...2)
             currentRound += 1
+            opacityAmount = [1.0, 1.0, 1.0]
+            scaleAmount = [1.0, 1.0, 1.0]
             
         }
     }
@@ -140,6 +175,8 @@ struct ContentView: View {
         correctAnswer = Int.random(in: 0...2)
         score = 0
         currentRound = 1
+        opacityAmount = [1.0, 1.0, 1.0]
+        scaleAmount = [1.0, 1.0, 1.0]
         
     }
 
