@@ -4,7 +4,7 @@
 //
 //  Created by WeMa Mobile on 17/09/2024.
 //
-// Challenge 1 | Disallow answers that are shorter than three letters or are just our start word.
+// Challenge 1 | Disallow answers that are shorter than three letters or are just our start word. ✅
 //
 // Challenge 2 | Add a toolbar button that calls startGame(), so users can restart with a new word whenever they want to.
 //
@@ -46,6 +46,11 @@ struct ContentView: View {
                 Button("OK") { }
             } message: {
                 Text(errorMessage)
+            }
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button("Restart", action: startGame)
+                }
             }
         }
     }
