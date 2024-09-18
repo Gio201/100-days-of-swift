@@ -8,7 +8,7 @@
 //
 // Challenge 2 | Add a toolbar button that calls startGame(), so users can restart with a new word whenever they want to. ✅
 //
-// Challenge 3 | Put a text view somewhere so you can track and show the player’s score for a given root word. How you calculate score is down to you, but something involving number of words and their letter count would be reasonable.
+// Challenge 3 | Put a text view somewhere so you can track and show the player’s score for a given root word. How you calculate score is down to you, but something involving number of words and their letter count would be reasonable. ✅
 ///
 
 import SwiftUI
@@ -22,12 +22,15 @@ struct ContentView: View {
     @State private var errorMessage = ""
     @State private var showingError = false
     
+    @State private var score = 0
+    
     var body: some View {
         NavigationStack {
             List {
                 Section {
                     TextField("Enter your word", text: $newWord)
                         .textInputAutocapitalization(.never)
+                        .disableAutocorrection(true)
                 }
                 
                 Section {
@@ -50,6 +53,11 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button("Restart", action: startGame)
+                }
+                
+                ToolbarItem(placement: .bottomBar) {
+                    Text("Score: \(score)")
+                        .font(.title3)
                 }
             }
         }
@@ -88,6 +96,9 @@ struct ContentView: View {
         withAnimation {
             usedWords.insert(answer, at: 0)
         }
+        
+        score += answer.count
+        
         newWord = ""
     }
     
@@ -97,6 +108,7 @@ struct ContentView: View {
                 let allWords = startWords.components(separatedBy: "\n")
                 rootWord = allWords.randomElement() ?? "silkworm"
                 usedWords.removeAll()
+                score = 0
                 return
             }
         }
