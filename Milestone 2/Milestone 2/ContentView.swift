@@ -129,10 +129,16 @@ struct ContentView: View {
             maxMultiplier = 10
         }
         
-        for _ in 1...numQuestions {
+        var usedMultipliers = Set<Int>()
+        
+        while generatedQuestions.count < numQuestions {
             let randomMultiplier = Int.random(in: 1...maxMultiplier)
-            let questionText = "\(quantity) x \(randomMultiplier) = "
-            generatedQuestions.append(questionText)
+            
+            if !usedMultipliers.contains(randomMultiplier) {
+                let questionText = "\(quantity) x \(randomMultiplier) = "
+                generatedQuestions.append(questionText)
+                usedMultipliers.insert(randomMultiplier)
+            }
         }
         
         isQuestionsGenerated = true
