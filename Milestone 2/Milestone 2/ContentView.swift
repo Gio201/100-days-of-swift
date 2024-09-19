@@ -112,44 +112,34 @@ struct ContentView: View {
     }
 
     func generateQuestions() {
-        generatedQuestions.removeAll()
-        userAnswers = Array(repeating: "", count: Int(selectedQuestion) ?? 10)
-        
-        let numQuestions = Int(selectedQuestion) ?? 10
-        var maxMultiplier = 10
-        
-        switch selectedDifficulty {
-        case "Easy":
-            maxMultiplier = 5
-        case "Medium":
-            maxMultiplier = 12
-        case "Hard":
-            maxMultiplier = 20
-        default:
-            maxMultiplier = 10
-        }
-        
-<<<<<<< HEAD
-       var usedMultipliers = Set<Int>()
-=======
-        var usedMultipliers = Set<Int>()
->>>>>>> f78e398875414be61917067631f7e873b4707ce7
-        
-        while generatedQuestions.count < numQuestions {
-            let randomMultiplier = Int.random(in: 1...maxMultiplier)
-            
-            if !usedMultipliers.contains(randomMultiplier) {
-                let questionText = "\(quantity) x \(randomMultiplier) = "
-                generatedQuestions.append(questionText)
-                usedMultipliers.insert(randomMultiplier)
-            }
-        }
-        
-        isQuestionsGenerated = true
-        areQuestionsCompleted = false
-        correctAnswers = 0
-    }
-
+         generatedQuestions.removeAll()
+         userAnswers = Array(repeating: "", count: Int(selectedQuestion) ?? 10)
+         
+         let numQuestions = Int(selectedQuestion) ?? 10
+         var maxMultiplier = 10
+         
+         switch selectedDifficulty {
+         case "Easy":
+             maxMultiplier = 5
+         case "Medium":
+             maxMultiplier = 12
+         case "Hard":
+             maxMultiplier = 20
+         default:
+             maxMultiplier = 10
+         }
+         
+         for _ in 1...numQuestions {
+             let randomMultiplier = Int.random(in: 1...maxMultiplier)
+             let questionText = "\(quantity) x \(randomMultiplier) = "
+             generatedQuestions.append(questionText)
+         }
+         
+         isQuestionsGenerated = true
+         areQuestionsCompleted = false
+         correctAnswers = 0
+     }
+     
     func checkAnswers() {
         correctAnswers = 0
         
