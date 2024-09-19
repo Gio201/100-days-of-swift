@@ -129,7 +129,11 @@ struct ContentView: View {
             maxMultiplier = 10
         }
         
+<<<<<<< HEAD
+       var usedMultipliers = Set<Int>()
+=======
         var usedMultipliers = Set<Int>()
+>>>>>>> f78e398875414be61917067631f7e873b4707ce7
         
         while generatedQuestions.count < numQuestions {
             let randomMultiplier = Int.random(in: 1...maxMultiplier)
