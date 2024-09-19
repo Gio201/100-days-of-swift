@@ -4,7 +4,6 @@
 //
 //  Created by WeMa Mobile on 18/09/2024.
 //
-
 import SwiftUI
 
 struct ContentView: View {
@@ -21,91 +20,120 @@ struct ContentView: View {
     let difficulty = ["Easy", "Medium", "Hard"]
 
     var body: some View {
-        if isQuestionsGenerated {
-            if areQuestionsCompleted {
-                VStack {
-                    Text("You got \(correctAnswers) out of \(generatedQuestions.count) correct!")
-                        .font(.title2)
-                        .padding()
-
-                    Button(action: resetView) {
-                        Text("Play Again")
-                    }
-                    .padding(30)
-                }
-            } else {
-                ScrollView(showsIndicators: false) {
+        ZStack {
+            Color(red: 0.9, green: 0.95, blue: 1.0)
+                .edgesIgnoringSafeArea(.all)
+            
+            if isQuestionsGenerated {
+                if areQuestionsCompleted {
                     VStack {
-                        ForEach(0..<generatedQuestions.count, id: \.self) { index in
-                            HStack {
-                                Text(generatedQuestions[index])
-                                    .font(.title2)
-                                    .padding(.vertical, 5)
-                                
-                                TextField("Answer", text: $userAnswers[index])
-                                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                                    .keyboardType(.numberPad)
-                                    .frame(width: 80)
-                            }
-                        }
+                        Text("You got \(correctAnswers) out of \(generatedQuestions.count) correct!")
+                            .font(.title2)
+                            .foregroundColor(.purple)
+                            .padding()
 
-                        Button(action: checkAnswers) {
-                            Text("Submit Answers")
+                        Button(action: resetView) {
+                            Text("Play Again")
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Color.green)
+                                .cornerRadius(10)
                         }
                         .padding(30)
                     }
-                }
-            }
-        } else {
-            VStack(spacing: 30) {
-                Section {
-                    VStack(spacing: 10) {
-                        Text("What multiplication table do you want?")
-                        Stepper(value: $quantity, in: 2...12) {
-                            Text("\(quantity)")
-                        }
-                        .padding(.horizontal, 100)
-                    }
-                    .padding(30)
-                }
-                
-                Section {
-                    VStack(spacing: 10) {
-                        Text("How many questions do you want?")
-                        Picker("", selection: $selectedQuestion) {
-                            ForEach(question, id: \.self) {
-                                Text($0)
+                } else {
+                    ScrollView(showsIndicators: false) {
+                        VStack {
+                            ForEach(0..<generatedQuestions.count, id: \.self) { index in
+                                HStack {
+                                    Text(generatedQuestions[index])
+                                        .font(.title2)
+                                        .foregroundColor(.blue)
+                                        .padding(.vertical, 5)
+                                    
+                                    TextField("Answer", text: $userAnswers[index])
+                                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                                        .keyboardType(.numberPad)
+                                        .frame(width: 80)
+                                }
                             }
+
+                            Button(action: checkAnswers) {
+                                Text("Submit Answers")
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .background(Color.orange)
+                                    .cornerRadius(10)
+                            }
+                            .padding(30)
                         }
-                        .pickerStyle(.segmented)
                     }
-                    .padding(30)
                 }
+            } else {
+                VStack(spacing: 30) {
+                    Section {
+                        VStack(spacing: 10) {
+                            Text("What multiplication table do you want?")
+                                .foregroundColor(.blue)
+                            Stepper(value: $quantity, in: 2...12) {
+                                Text("\(quantity)")
+                                    .foregroundColor(.purple)
+                                    .font(.title)
+                            }
+                            .padding(.horizontal, 100)
+                        }
+                        .padding(30)
+                    }
                     
-                Section {
-                    VStack(spacing: 10) {
-                        Text("What difficulty do you like?")
-                        Picker("", selection: $selectedDifficulty) {
-                            ForEach(difficulty, id: \.self) {
-                                Text($0)
+                    Section {
+                        VStack(spacing: 10) {
+                            Text("How many questions do you want?")
+                                .foregroundColor(.blue)
+                            Picker("", selection: $selectedQuestion) {
+                                ForEach(question, id: \.self) {
+                                    Text($0)
+                                        .foregroundColor(.purple)
+                                }
+                            }
+                            .pickerStyle(.segmented)
+                        }
+                        .padding(30)
+                    }
+                        
+                    Section {
+                        VStack(spacing: 10) {
+                            Text("What difficulty do you like?")
+                                .foregroundColor(.blue)
+                            Picker("", selection: $selectedDifficulty) {
+                                ForEach(difficulty, id: \.self) {
+                                    Text($0)
+                                        .foregroundColor(.purple)
+                                }
+                            }
+                            .pickerStyle(.segmented)
+                        }
+                        .padding(30)
+                    }
+                    
+                    Section {
+                        VStack(spacing: 10) {
+                            Button {
+                                generateQuestions()
+                            } label: {
+                                HStack(spacing: 40) {
+                                    Text("Generate Questions")
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.white)
+                                        .padding()
+                                        .background(Color.pink)
+                                        .cornerRadius(10)
+                                }
                             }
                         }
-                        .pickerStyle(.segmented)
+                        .padding(30)
                     }
-                    .padding(30)
-                }
-                
-                Section {
-                    VStack(spacing: 10) {
-                        Button {
-                            generateQuestions()
-                        } label: {
-                            HStack(spacing: 40) {
-                                Text("Generate Questions")
-                            }
-                        }
-                    }
-                    .padding(30)
                 }
             }
         }
