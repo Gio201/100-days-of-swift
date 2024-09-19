@@ -18,20 +18,21 @@ struct ContentView: View {
     let difficulty = ["Easy", "Medium", "Hard"]
     
     var body: some View {
-        NavigationStack {
-            if isQuestionsGenerated {
-                VStack {
-                    ForEach(generatedQuestions, id: \.self) { question in
-                        Text(question)
-                            .font(.title2)
-                            .padding(.vertical, 5)
+                if isQuestionsGenerated {
+                    ScrollView(showsIndicators: false) {
+                        VStack {
+                            ForEach(generatedQuestions, id: \.self) { question in
+                                Text(question)
+                                    .font(.title2)
+                                    .padding(.vertical, 5)
+                            }
+                            
+                            Button(action: resetView) {
+                                Text("Reset")
+                            }
+                            .padding(30)
+                        }
                     }
-                    
-                    Button(action: resetView) {
-                        Text("Reset")
-                    }
-                    .padding(30)
-                }
             } else {
                 VStack(spacing: 30) {
                     Section {
@@ -87,7 +88,6 @@ struct ContentView: View {
                 }
             }
         }
-    }
     
     func generateQuestions() {
         generatedQuestions.removeAll()
