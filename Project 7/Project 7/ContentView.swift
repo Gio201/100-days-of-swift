@@ -5,8 +5,8 @@
 //  Created by WeMa Mobile on 20/09/2024.
 //
 
-
 import SwiftUI
+import Foundation
 
 struct ExpenseItem: Identifiable, Codable {
     var id = UUID()
@@ -15,9 +15,8 @@ struct ExpenseItem: Identifiable, Codable {
     let amount: Double
 }
 
-@Observable
-class Expenses {
-    var items = [ExpenseItem]() {
+class Expenses: ObservableObject {
+    @Published var items = [ExpenseItem]() {
         didSet {
             if let encoded = try? JSONEncoder().encode(items) {
                 UserDefaults.standard.set(encoded, forKey: "Items")
@@ -32,41 +31,45 @@ class Expenses {
                 return
             }
         }
-
         items = []
     }
 }
 
+
 struct ContentView: View {
-    @State private var expenses = Expenses()
+    @StateObject private var expenses = Expenses()
 
     @State private var showingAddExpense = false
 
     var body: some View {
         NavigationStack {
             List {
-                ForEach(expenses.items) { item in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(item.name)
-                                .font(.headline)
-
-                            Text(item.type)
-                        }
-
-                        Spacer()
-
-                        Text(item.amount, format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
-                            .foregroundColor(item.amount < 10 ? .green : (item.amount < 100) ? .blue : .red)
-
+                Section(header: Text("Personal Expenses")) {
+                    ForEach(personalExpenses) { item in
+                        expenseRow(for: item)
+                    }
+                    .onDelete { offsets in
+                        removeItems(at: offsets, from: personalExpenses)
                     }
                 }
-                .onDelete(perform: removeItems)
+                
+                Section(header: Text("Business Expenses")) {
+                    ForEach(businessExpenses) { item in
+                        expenseRow(for: item)
+                    }
+                    .onDelete { offsets in
+                        removeItems(at: offsets, from: businessExpenses)
+                    }
+                }
             }
             .navigationTitle("iExpense")
             .toolbar {
-                Button("Add Expense", systemImage: "plus") {
-                    showingAddExpense = true
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        showingAddExpense = true
+                    } label: {
+                        Image(systemName: "plus")
+                    }
                 }
             }
             .sheet(isPresented: $showingAddExpense) {
@@ -75,8 +78,37 @@ struct ContentView: View {
         }
     }
 
-    func removeItems(at offsets: IndexSet) {
-        expenses.items.remove(atOffsets: offsets)
+    var personalExpenses: [ExpenseItem] {
+        expenses.items.filter { $0.type == "Personal" }
+    }
+
+    var businessExpenses: [ExpenseItem] {
+        expenses.items.filter { $0.type == "Business" }
+    }
+
+    @ViewBuilder
+    func expenseRow(for item: ExpenseItem) -> some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text(item.name)
+                    .font(.headline)
+
+                Text(item.type)
+            }
+
+            Spacer()
+
+            Text(item.amount, format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
+                .foregroundColor(item.amount < 10 ? .green : (item.amount < 100) ? .blue : .red)
+        }
+    }
+
+    func removeItems(at offsets: IndexSet, from filteredArray: [ExpenseItem]) {
+        for offset in offsets {
+            if let index = expenses.items.firstIndex(where: { $0.id == filteredArray[offset].id }) {
+                expenses.items.remove(at: index)
+            }
+        }
     }
 }
 

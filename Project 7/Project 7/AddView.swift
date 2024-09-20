@@ -1,10 +1,9 @@
 //
-//  AddView.swift
+//  ContentView.swift
 //  Project 7
 //
 //  Created by WeMa Mobile on 20/09/2024.
 //
-
 
 import SwiftUI
 
@@ -15,7 +14,7 @@ struct AddView: View {
     @State private var type = "Personal"
     @State private var amount = 0.0
 
-    var expenses: Expenses
+    @ObservedObject var expenses: Expenses
 
     let types = ["Business", "Personal"]
 
@@ -33,16 +32,26 @@ struct AddView: View {
                 TextField("Amount", value: $amount, format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
                     .keyboardType(.decimalPad)
 
+                Button("Save") {
+                    saveExpense()
+                }
+                .disabled(name.isEmpty || amount <= 0)
             }
             .navigationTitle("Add new expense")
             .toolbar {
-                Button("Save") {
-                    let item = ExpenseItem(name: name, type: type, amount: amount)
-                    expenses.items.append(item)
-                    dismiss()
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
                 }
             }
         }
+    }
+
+    func saveExpense() {
+        let newItem = ExpenseItem(name: name, type: type, amount: amount)
+        expenses.items.append(newItem)
+        dismiss()
     }
 }
 
