@@ -30,8 +30,9 @@ struct AddView: View {
                     }
                 }
 
-                TextField("Amount", value: $amount, format: .currency(code: "EUR"))
+                TextField("Amount", value: $amount, format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
                     .keyboardType(.decimalPad)
+
             }
             .navigationTitle("Add new expense")
             .toolbar {

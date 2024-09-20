@@ -56,7 +56,7 @@ struct ContentView: View {
 
                         Spacer()
 
-                        Text(item.amount, format: .currency(code: "EUR"))
+                        Text(item.amount, format: .currency(code: Locale.current.currency?.identifier ?? "EUR"))
                             .foregroundColor(item.amount < 10 ? .green : (item.amount < 100) ? .blue : .red)
 
                     }
