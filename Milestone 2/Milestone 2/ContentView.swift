@@ -4,6 +4,7 @@
 //
 //  Created by WeMa Mobile on 18/09/2024.
 //
+
 import SwiftUI
 
 struct ContentView: View {
@@ -16,158 +17,60 @@ struct ContentView: View {
     @State private var userAnswers: [String] = []
     @State private var correctAnswers: Int = 0
 
-    let question = ["5", "10", "20"]
-    let difficulty = ["Easy", "Medium", "Hard"]
-
     var body: some View {
         ZStack {
-            Color(red: 0.9, green: 0.95, blue: 1.0)
-                .edgesIgnoringSafeArea(.all)
+            BackgroundView()
             
             if isQuestionsGenerated {
                 if areQuestionsCompleted {
-                    VStack {
-                        Text("You got \(correctAnswers) out of \(generatedQuestions.count) correct!")
-                            .font(.title2)
-                            .foregroundColor(.purple)
-                            .padding()
-
-                        Button(action: resetView) {
-                            Text("Play Again")
-                                .fontWeight(.bold)
-                                .foregroundColor(.white)
-                                .padding()
-                                .background(Color.green)
-                                .cornerRadius(10)
-                        }
-                        .padding(30)
-                    }
+                    ResultView(correctAnswers: correctAnswers, totalQuestions: generatedQuestions.count, onPlayAgain: resetView)
                 } else {
-                    ScrollView(showsIndicators: false) {
-                        VStack {
-                            ForEach(0..<generatedQuestions.count, id: \.self) { index in
-                                HStack {
-                                    Text(generatedQuestions[index])
-                                        .font(.title2)
-                                        .foregroundColor(.blue)
-                                        .padding(.vertical, 5)
-                                    
-                                    TextField("Answer", text: $userAnswers[index])
-                                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                                        .keyboardType(.numberPad)
-                                        .frame(width: 80)
-                                }
-                            }
-
-                            Button(action: checkAnswers) {
-                                Text("Submit Answers")
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
-                                    .padding()
-                                    .background(Color.orange)
-                                    .cornerRadius(10)
-                            }
-                            .padding(30)
-                        }
-                    }
+                    QuestionListView(
+                        generatedQuestions: $generatedQuestions,
+                        userAnswers: $userAnswers,
+                        onSubmit: checkAnswers
+                    )
                 }
             } else {
-                VStack(spacing: 30) {
-                    Section {
-                        VStack(spacing: 10) {
-                            Text("What multiplication table do you want?")
-                                .foregroundColor(.blue)
-                            Stepper(value: $quantity, in: 2...12) {
-                                Text("\(quantity)")
-                                    .foregroundColor(.purple)
-                                    .font(.title)
-                            }
-                            .padding(.horizontal, 100)
-                        }
-                        .padding(30)
-                    }
-                    
-                    Section {
-                        VStack(spacing: 10) {
-                            Text("How many questions do you want?")
-                                .foregroundColor(.blue)
-                            Picker("", selection: $selectedQuestion) {
-                                ForEach(question, id: \.self) {
-                                    Text($0)
-                                        .foregroundColor(.purple)
-                                }
-                            }
-                            .pickerStyle(.segmented)
-                        }
-                        .padding(30)
-                    }
-                        
-                    Section {
-                        VStack(spacing: 10) {
-                            Text("What difficulty do you like?")
-                                .foregroundColor(.blue)
-                            Picker("", selection: $selectedDifficulty) {
-                                ForEach(difficulty, id: \.self) {
-                                    Text($0)
-                                        .foregroundColor(.purple)
-                                }
-                            }
-                            .pickerStyle(.segmented)
-                        }
-                        .padding(30)
-                    }
-                    
-                    Section {
-                        VStack(spacing: 10) {
-                            Button {
-                                generateQuestions()
-                            } label: {
-                                HStack(spacing: 40) {
-                                    Text("Generate Questions")
-                                        .fontWeight(.bold)
-                                        .foregroundColor(.white)
-                                        .padding()
-                                        .background(Color.pink)
-                                        .cornerRadius(10)
-                                }
-                            }
-                        }
-                        .padding(30)
-                    }
-                }
+                SetupView(
+                    quantity: $quantity,
+                    selectedQuestion: $selectedQuestion,
+                    selectedDifficulty: $selectedDifficulty,
+                    onGenerateQuestions: generateQuestions
+                )
             }
         }
     }
 
     func generateQuestions() {
-         generatedQuestions.removeAll()
-         userAnswers = Array(repeating: "", count: Int(selectedQuestion) ?? 10)
-         
-         let numQuestions = Int(selectedQuestion) ?? 10
-         var maxMultiplier = 10
-         
-         switch selectedDifficulty {
-         case "Easy":
-             maxMultiplier = 5
-         case "Medium":
-             maxMultiplier = 12
-         case "Hard":
-             maxMultiplier = 20
-         default:
-             maxMultiplier = 10
-         }
-         
-         for _ in 1...numQuestions {
-             let randomMultiplier = Int.random(in: 1...maxMultiplier)
-             let questionText = "\(quantity) x \(randomMultiplier) = "
-             generatedQuestions.append(questionText)
-         }
-         
-         isQuestionsGenerated = true
-         areQuestionsCompleted = false
-         correctAnswers = 0
-     }
-     
+        generatedQuestions.removeAll()
+        userAnswers = Array(repeating: "", count: Int(selectedQuestion) ?? 10)
+        
+        let numQuestions = Int(selectedQuestion) ?? 10
+        var maxMultiplier = 10
+        
+        switch selectedDifficulty {
+        case "Easy":
+            maxMultiplier = 5
+        case "Medium":
+            maxMultiplier = 12
+        case "Hard":
+            maxMultiplier = 20
+        default:
+            maxMultiplier = 10
+        }
+        
+        for _ in 1...numQuestions {
+            let randomMultiplier = Int.random(in: 1...maxMultiplier)
+            let questionText = "\(quantity) x \(randomMultiplier) = "
+            generatedQuestions.append(questionText)
+        }
+        
+        isQuestionsGenerated = true
+        areQuestionsCompleted = false
+        correctAnswers = 0
+    }
+    
     func checkAnswers() {
         correctAnswers = 0
         
