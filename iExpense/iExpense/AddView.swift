@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Project 7
+//  iExpense
 //
 //  Created by WeMa Mobile on 20/09/2024.
 //
