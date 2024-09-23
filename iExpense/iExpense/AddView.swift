@@ -17,12 +17,10 @@ struct AddView: View {
     @ObservedObject var expenses: Expenses
 
     let types = ["Business", "Personal"]
-
+    
     var body: some View {
         NavigationStack {
             Form {
-                TextField("Name", text: $name)
-
                 Picker("Type", selection: $type) {
                     ForEach(types, id: \.self) {
                         Text($0)
@@ -37,10 +35,10 @@ struct AddView: View {
                 }
                 .disabled(name.isEmpty || amount <= 0)
             }
-            .navigationTitle("Add new expense")
+            .navigationTitleField($name)
             .navigationBarBackButtonHidden(true)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .bottomBar) {
                     Button("Cancel") {
                         dismiss()
                     }
@@ -56,6 +54,18 @@ struct AddView: View {
     }
 }
 
+extension View {
+    func navigationTitleField(_ binding: Binding<String>) -> some View {
+        self.toolbar {
+            ToolbarItem(placement: .principal) {
+                TextField("Expense Name", text: binding)
+                    .multilineTextAlignment(.center)
+                    .font(.headline)
+                    .textFieldStyle(.roundedBorder)
+            }
+        }
+    }
+}
 
 #Preview {
     AddView(expenses: Expenses())
