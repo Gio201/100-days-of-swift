@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  100daysofswiftui
+//  WeSplit
 //
 //  Created by WeMa Intern on 09/09/2024.
 //
