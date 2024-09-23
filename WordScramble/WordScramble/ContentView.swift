@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Project 5
+//  WordScramble
 //
 //  Created by WeMa Mobile on 17/09/2024.
 //
