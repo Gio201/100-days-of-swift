@@ -38,6 +38,7 @@ struct AddView: View {
                 .disabled(name.isEmpty || amount <= 0)
             }
             .navigationTitle("Add new expense")
+            .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("Cancel") {
@@ -54,6 +55,7 @@ struct AddView: View {
         dismiss()
     }
 }
+
 
 #Preview {
     AddView(expenses: Expenses())
