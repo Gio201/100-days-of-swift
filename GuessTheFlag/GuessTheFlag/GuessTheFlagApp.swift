@@ -1,6 +1,6 @@
 //
-//  Project_2App.swift
-//  Project 2
+//  GuessTheFlagApp.swift
+//  GuessTheFlag
 //
 //  Created by WeMa Intern on 13/09/2024.
 //

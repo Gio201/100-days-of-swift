@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "68F6C4D22C94126300132564"
-               BuildableName = "Project 2.app"
-               BlueprintName = "Project 2"
-               ReferencedContainer = "container:Project 2.xcodeproj">
+               BuildableName = "GuessTheFlag.app"
+               BlueprintName = "GuessTheFlag"
+               ReferencedContainer = "container:GuessTheFlag.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "68F6C4D22C94126300132564"
-            BuildableName = "Project 2.app"
-            BlueprintName = "Project 2"
-            ReferencedContainer = "container:Project 2.xcodeproj">
+            BuildableName = "GuessTheFlag.app"
+            BlueprintName = "GuessTheFlag"
+            ReferencedContainer = "container:GuessTheFlag.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "68F6C4D22C94126300132564"
-            BuildableName = "Project 2.app"
-            BlueprintName = "Project 2"
-            ReferencedContainer = "container:Project 2.xcodeproj">
+            BuildableName = "GuessTheFlag.app"
+            BlueprintName = "GuessTheFlag"
+            ReferencedContainer = "container:GuessTheFlag.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -7,18 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		68F6C4D72C94126300132564 /* Project_2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F6C4D62C94126300132564 /* Project_2App.swift */; };
+		68F6C4D72C94126300132564 /* GuessTheFlagApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F6C4D62C94126300132564 /* GuessTheFlagApp.swift */; };
 		68F6C4D92C94126300132564 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68F6C4D82C94126300132564 /* ContentView.swift */; };
 		68F6C4DB2C94126400132564 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68F6C4DA2C94126400132564 /* Assets.xcassets */; };
 		68F6C4DF2C94126400132564 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68F6C4DE2C94126400132564 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		68F6C4D32C94126300132564 /* Project 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		68F6C4D62C94126300132564 /* Project_2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project_2App.swift; sourceTree = "<group>"; };
+		68F6C4D32C94126300132564 /* GuessTheFlag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuessTheFlag.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		68F6C4D62C94126300132564 /* GuessTheFlagApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessTheFlagApp.swift; sourceTree = "<group>"; };
 		68F6C4D82C94126300132564 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		68F6C4DA2C94126400132564 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		68F6C4DC2C94126400132564 /* Project_2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Project_2.entitlements; sourceTree = "<group>"; };
+		68F6C4DC2C94126400132564 /* GuessTheFlag.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GuessTheFlag.entitlements; sourceTree = "<group>"; };
 		68F6C4DE2C94126400132564 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -36,7 +36,7 @@
 		68F6C4CA2C94126300132564 = {
 			isa = PBXGroup;
 			children = (
-				68F6C4D52C94126300132564 /* Project 2 */,
+				68F6C4D52C94126300132564 /* GuessTheFlag */,
 				68F6C4D42C94126300132564 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,21 +44,21 @@
 		68F6C4D42C94126300132564 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				68F6C4D32C94126300132564 /* Project 2.app */,
+				68F6C4D32C94126300132564 /* GuessTheFlag.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		68F6C4D52C94126300132564 /* Project 2 */ = {
+		68F6C4D52C94126300132564 /* GuessTheFlag */ = {
 			isa = PBXGroup;
 			children = (
-				68F6C4D62C94126300132564 /* Project_2App.swift */,
+				68F6C4D62C94126300132564 /* GuessTheFlagApp.swift */,
 				68F6C4D82C94126300132564 /* ContentView.swift */,
 				68F6C4DA2C94126400132564 /* Assets.xcassets */,
-				68F6C4DC2C94126400132564 /* Project_2.entitlements */,
+				68F6C4DC2C94126400132564 /* GuessTheFlag.entitlements */,
 				68F6C4DD2C94126400132564 /* Preview Content */,
 			);
-			path = "Project 2";
+			path = GuessTheFlag;
 			sourceTree = "<group>";
 		};
 		68F6C4DD2C94126400132564 /* Preview Content */ = {
@@ -72,9 +72,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		68F6C4D22C94126300132564 /* Project 2 */ = {
+		68F6C4D22C94126300132564 /* GuessTheFlag */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 68F6C4E22C94126400132564 /* Build configuration list for PBXNativeTarget "Project 2" */;
+			buildConfigurationList = 68F6C4E22C94126400132564 /* Build configuration list for PBXNativeTarget "GuessTheFlag" */;
 			buildPhases = (
 				68F6C4CF2C94126300132564 /* Sources */,
 				68F6C4D02C94126300132564 /* Frameworks */,
@@ -84,9 +84,9 @@
 			);
 			dependencies = (
 			);
-			name = "Project 2";
+			name = GuessTheFlag;
 			productName = "Project 2";
-			productReference = 68F6C4D32C94126300132564 /* Project 2.app */;
+			productReference = 68F6C4D32C94126300132564 /* GuessTheFlag.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -104,7 +104,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 68F6C4CE2C94126300132564 /* Build configuration list for PBXProject "Project 2" */;
+			buildConfigurationList = 68F6C4CE2C94126300132564 /* Build configuration list for PBXProject "GuessTheFlag" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -117,7 +117,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				68F6C4D22C94126300132564 /* Project 2 */,
+				68F6C4D22C94126300132564 /* GuessTheFlag */,
 			);
 		};
 /* End PBXProject section */
@@ -140,7 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68F6C4D92C94126300132564 /* ContentView.swift in Sources */,
-				68F6C4D72C94126300132564 /* Project_2App.swift in Sources */,
+				68F6C4D72C94126300132564 /* GuessTheFlagApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,11 +266,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Project 2/Project_2.entitlements";
+				CODE_SIGN_ENTITLEMENTS = GuessTheFlag/GuessTheFlag.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Project 2/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"GuessTheFlag/Preview Content\"";
 				DEVELOPMENT_TEAM = Q8675CUN63;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -290,7 +290,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "nl.wemamobile.Project-2";
+				PRODUCT_BUNDLE_IDENTIFIER = nl.wemamobile.GuessTheFlag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
@@ -307,11 +307,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Project 2/Project_2.entitlements";
+				CODE_SIGN_ENTITLEMENTS = GuessTheFlag/GuessTheFlag.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Project 2/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"GuessTheFlag/Preview Content\"";
 				DEVELOPMENT_TEAM = Q8675CUN63;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -331,7 +331,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "nl.wemamobile.Project-2";
+				PRODUCT_BUNDLE_IDENTIFIER = nl.wemamobile.GuessTheFlag;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
@@ -346,7 +346,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		68F6C4CE2C94126300132564 /* Build configuration list for PBXProject "Project 2" */ = {
+		68F6C4CE2C94126300132564 /* Build configuration list for PBXProject "GuessTheFlag" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				68F6C4E02C94126400132564 /* Debug */,
@@ -355,7 +355,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		68F6C4E22C94126400132564 /* Build configuration list for PBXNativeTarget "Project 2" */ = {
+		68F6C4E22C94126400132564 /* Build configuration list for PBXNativeTarget "GuessTheFlag" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				68F6C4E32C94126400132564 /* Debug */,

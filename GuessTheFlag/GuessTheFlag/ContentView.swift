@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  Project 2
+//  GuessTheFlag
 //
 //  Created by WeMa Intern on 13/09/2024.
 //
