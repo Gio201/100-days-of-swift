@@ -21,6 +21,8 @@
 		F1C5CA2E2C9DA7D30031B526 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C5CA2D2C9DA7D30031B526 /* Mission.swift */; };
 		F1CA4B472CA1557B00F41097 /* CustomDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CA4B462CA1557B00F41097 /* CustomDivider.swift */; };
 		F1CA4B492CA155D400F41097 /* CrewRoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CA4B482CA155D400F41097 /* CrewRoster.swift */; };
+		F1CA4B4F2CA160B100F41097 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CA4B4E2CA160B100F41097 /* GridLayout.swift */; };
+		F1CA4B512CA1624B00F41097 /* ListLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CA4B502CA1624B00F41097 /* ListLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		F1C5CA2D2C9DA7D30031B526 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		F1CA4B462CA1557B00F41097 /* CustomDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDivider.swift; sourceTree = "<group>"; };
 		F1CA4B482CA155D400F41097 /* CrewRoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrewRoster.swift; sourceTree = "<group>"; };
+		F1CA4B4E2CA160B100F41097 /* GridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
+		F1CA4B502CA1624B00F41097 /* ListLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +80,8 @@
 				F1C5CA182C9D95C60031B526 /* ContentView.swift */,
 				F15BCD702C9DBCAE00D849CF /* MissionView.swift */,
 				F1C4D6D52CA143E600451CA1 /* AstronautView.swift */,
+				F1CA4B4E2CA160B100F41097 /* GridLayout.swift */,
+				F1CA4B502CA1624B00F41097 /* ListLayout.swift */,
 				F15BCD6E2C9DB9FA00D849CF /* Color-Theme.swift */,
 				F1CA4B462CA1557B00F41097 /* CustomDivider.swift */,
 				F1CA4B482CA155D400F41097 /* CrewRoster.swift */,
@@ -180,7 +186,9 @@
 				F1C5CA172C9D95C60031B526 /* MoonshotApp.swift in Sources */,
 				F1CA4B492CA155D400F41097 /* CrewRoster.swift in Sources */,
 				F1C5CA2E2C9DA7D30031B526 /* Mission.swift in Sources */,
+				F1CA4B512CA1624B00F41097 /* ListLayout.swift in Sources */,
 				F1C5CA2C2C9DA3BC0031B526 /* Bundle-Decodable.swift in Sources */,
+				F1CA4B4F2CA160B100F41097 /* GridLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
