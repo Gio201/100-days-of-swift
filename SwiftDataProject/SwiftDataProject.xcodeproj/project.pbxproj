@@ -12,7 +12,8 @@
 		F1298CBB2CA544DC001B1982 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1298CBA2CA544DC001B1982 /* Assets.xcassets */; };
 		F1298CBF2CA544DC001B1982 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1298CBE2CA544DC001B1982 /* Preview Assets.xcassets */; };
 		F1298CC62CA5455B001B1982 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1298CC52CA5455B001B1982 /* User.swift */; };
-		F1298CC82CA545FA001B1982 /* EditUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1298CC72CA545FA001B1982 /* EditUserView.swift */; };
+		F1298CCA2CA55606001B1982 /* UsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1298CC92CA55606001B1982 /* UsersView.swift */; };
+		F1298CCC2CA55FE4001B1982 /* Job.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1298CCB2CA55FE4001B1982 /* Job.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +24,8 @@
 		F1298CBC2CA544DC001B1982 /* SwiftDataProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftDataProject.entitlements; sourceTree = "<group>"; };
 		F1298CBE2CA544DC001B1982 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F1298CC52CA5455B001B1982 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		F1298CC72CA545FA001B1982 /* EditUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserView.swift; sourceTree = "<group>"; };
+		F1298CC92CA55606001B1982 /* UsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersView.swift; sourceTree = "<group>"; };
+		F1298CCB2CA55FE4001B1982 /* Job.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Job.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +59,10 @@
 			isa = PBXGroup;
 			children = (
 				F1298CB62CA544DA001B1982 /* SwiftDataProjectApp.swift */,
-				F1298CC72CA545FA001B1982 /* EditUserView.swift */,
 				F1298CB82CA544DA001B1982 /* ContentView.swift */,
+				F1298CC92CA55606001B1982 /* UsersView.swift */,
 				F1298CC52CA5455B001B1982 /* User.swift */,
+				F1298CCB2CA55FE4001B1982 /* Job.swift */,
 				F1298CBA2CA544DC001B1982 /* Assets.xcassets */,
 				F1298CBC2CA544DC001B1982 /* SwiftDataProject.entitlements */,
 				F1298CBD2CA544DC001B1982 /* Preview Content */,
@@ -146,9 +149,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1298CB92CA544DA001B1982 /* ContentView.swift in Sources */,
-				F1298CC82CA545FA001B1982 /* EditUserView.swift in Sources */,
 				F1298CB72CA544DA001B1982 /* SwiftDataProjectApp.swift in Sources */,
 				F1298CC62CA5455B001B1982 /* User.swift in Sources */,
+				F1298CCA2CA55606001B1982 /* UsersView.swift in Sources */,
+				F1298CCC2CA55FE4001B1982 /* Job.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
