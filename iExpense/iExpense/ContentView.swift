@@ -13,33 +13,35 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext: ModelContext
     @Query private var expenses: [ExpenseItem]
     @State private var isAddingExpense = false
+    @State private var selectedFilter = "All"
+
+    let filters = ["All", "Personal", "Business"]
 
     var body: some View {
         NavigationStack {
-            List {
-                Section(header: Text("Personal Expenses")) {
-                    ForEach(personalExpenses) { item in
+            VStack {
+                Picker("Filter", selection: $selectedFilter) {
+                    ForEach(filters, id: \.self) {
+                        Text($0)
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding()
+
+                List {
+                    ForEach(filteredExpenses) { item in
                         expenseRow(for: item)
                     }
                     .onDelete { offsets in
-                        removeItems(at: offsets, from: personalExpenses)
+                        removeItems(at: offsets, from: filteredExpenses)
                     }
                 }
-                
-                Section(header: Text("Business Expenses")) {
-                    ForEach(businessExpenses) { item in
-                        expenseRow(for: item)
-                    }
-                    .onDelete { offsets in
-                        removeItems(at: offsets, from: businessExpenses)
-                    }
-                }
-            }
-            .navigationTitle("iExpense")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: AddView()) {
-                        Image(systemName: "plus")
+                .navigationTitle("iExpense")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink(destination: AddView()) {
+                            Image(systemName: "plus")
+                        }
                     }
                 }
             }
@@ -47,6 +49,17 @@ struct ContentView: View {
         .modelContainer(for: [ExpenseItem.self])
     }
 
+    var filteredExpenses: [ExpenseItem] {
+        switch selectedFilter {
+        case "Personal":
+            return personalExpenses
+        case "Business":
+            return businessExpenses
+        default:
+            return expenses
+        }
+    }
+    
     var personalExpenses: [ExpenseItem] {
         expenses.filter { $0.type == "Personal" }
     }
