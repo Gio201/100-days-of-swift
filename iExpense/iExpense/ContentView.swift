@@ -5,39 +5,13 @@
 //  Created by WeMa Mobile on 20/09/2024.
 //
 
+import SwiftData
 import SwiftUI
 import Foundation
 
-struct ExpenseItem: Identifiable, Codable {
-    var id = UUID()
-    let name: String
-    let type: String
-    let amount: Double
-}
-
-class Expenses: ObservableObject {
-    @Published var items = [ExpenseItem]() {
-        didSet {
-            if let encoded = try? JSONEncoder().encode(items) {
-                UserDefaults.standard.set(encoded, forKey: "Items")
-            }
-        }
-    }
-
-    init() {
-        if let savedItems = UserDefaults.standard.data(forKey: "Items") {
-            if let decodedItems = try? JSONDecoder().decode([ExpenseItem].self, from: savedItems) {
-                items = decodedItems
-                return
-            }
-        }
-        items = []
-    }
-}
-
-
 struct ContentView: View {
-    @StateObject private var expenses = Expenses()
+    @Environment(\.modelContext) private var modelContext: ModelContext
+    @Query private var expenses: [ExpenseItem]
     @State private var isAddingExpense = false
 
     var body: some View {
@@ -64,20 +38,21 @@ struct ContentView: View {
             .navigationTitle("iExpense")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: AddView(expenses: expenses)) {
+                    NavigationLink(destination: AddView()) {
                         Image(systemName: "plus")
                     }
                 }
             }
         }
+        .modelContainer(for: [ExpenseItem.self])
     }
 
     var personalExpenses: [ExpenseItem] {
-        expenses.items.filter { $0.type == "Personal" }
+        expenses.filter { $0.type == "Personal" }
     }
 
     var businessExpenses: [ExpenseItem] {
-        expenses.items.filter { $0.type == "Business" }
+        expenses.filter { $0.type == "Business" }
     }
 
     @ViewBuilder
@@ -99,8 +74,8 @@ struct ContentView: View {
 
     func removeItems(at offsets: IndexSet, from filteredArray: [ExpenseItem]) {
         for offset in offsets {
-            if let index = expenses.items.firstIndex(where: { $0.id == filteredArray[offset].id }) {
-                expenses.items.remove(at: index)
+            if let index = filteredArray.firstIndex(where: { $0.id == filteredArray[offset].id }) {
+                modelContext.delete(filteredArray[index])
             }
         }
     }

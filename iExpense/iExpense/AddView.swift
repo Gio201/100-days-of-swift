@@ -6,15 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct AddView: View {
     @Environment(\.dismiss) var dismiss
+    @Environment(\.modelContext) var modelContext
 
     @State private var name = ""
     @State private var type = "Personal"
     @State private var amount = 0.0
-
-    @ObservedObject var expenses: Expenses
 
     let types = ["Business", "Personal"]
     
@@ -49,7 +49,7 @@ struct AddView: View {
 
     func saveExpense() {
         let newItem = ExpenseItem(name: name, type: type, amount: amount)
-        expenses.items.append(newItem)
+        modelContext.insert(newItem) 
         dismiss()
     }
 }
@@ -68,5 +68,5 @@ extension View {
 }
 
 #Preview {
-    AddView(expenses: Expenses())
+    AddView()
 }
