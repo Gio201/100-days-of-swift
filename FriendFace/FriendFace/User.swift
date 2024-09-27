@@ -6,9 +6,9 @@
 //
 
 import Foundation
+import SwiftData
 
-
-struct User: Codable, Identifiable {
+class User: ObservableObject, Codable, Identifiable {
     let id: UUID
     let isActive: Bool
     let name: String
@@ -25,7 +25,7 @@ struct User: Codable, Identifiable {
         registered.formatted(date: .abbreviated, time: .omitted)
     }
     
-    struct Friend: Codable, Identifiable {
+    class Friend: ObservableObject, Codable, Identifiable {
         let id: UUID
         let name: String
     }

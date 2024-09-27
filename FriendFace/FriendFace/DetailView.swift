@@ -5,6 +5,7 @@
 //  Created by WeMa Mobile on 27/09/2024.
 //
 
+import SwiftData
 import SwiftUI
 
 
@@ -36,6 +37,12 @@ struct DetailView: View {
                 }
             } header: {
                 Text("Friends")
+            }
+            
+            Section {
+                Text(user.isActive ? "\(user.name) is active" : "\(user.name) is not active")
+            } header: {
+                Text("Currently active?")
             }
         }
         .navigationTitle(user.name)

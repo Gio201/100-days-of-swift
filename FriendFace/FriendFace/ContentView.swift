@@ -5,6 +5,7 @@
 //  Created by WeMa Mobile on 27/09/2024.
 //
 
+import SwiftData
 import SwiftUI
 
 struct ContentView: View {
