@@ -16,7 +16,7 @@ struct UserDetailView: View {
             Text("Email: \(user.email)")
             Text("Address: \(user.address)")
             Text("About: \(user.about)")
-            Text("Joined Date: \(user.registered)")
+            Text("Joined Date: \(formattedDate(user.registered))")
 
             
             Section(header: Text("Friends")) {

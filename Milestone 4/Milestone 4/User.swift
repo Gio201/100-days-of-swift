@@ -16,7 +16,7 @@ struct User: Codable, Identifiable {
     var email: String
     var address: String
     var about: String
-    let registered: String
+    var registered: String
     var tags: [String]
     var friends: [Friend]
 }
@@ -25,3 +25,14 @@ struct Friend: Codable, Identifiable {
     var id: UUID
     var name: String
 }
+
+func formattedDate(_ dateString: String) -> String {
+    let formatter = ISO8601DateFormatter()
+    if let date = formatter.date(from: dateString) {
+        let displayFormatter = DateFormatter()
+        displayFormatter.dateStyle = .medium
+        return displayFormatter.string(from: date)
+    }
+    return dateString
+}
+
