@@ -12,6 +12,7 @@ struct UserDetailView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
+            Text("Age: \(user.age)")
             Text("Company: \(user.company)")
             Text("Email: \(user.email)")
             Text("Address: \(user.address)")
