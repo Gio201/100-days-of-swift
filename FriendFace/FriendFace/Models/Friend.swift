@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-struct Friend: Codable, Identifiable {
+class Friend: Codable, Identifiable {
     let id: UUID
     let name: String
 }
