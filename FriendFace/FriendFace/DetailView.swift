@@ -48,6 +48,7 @@ struct DetailView: View {
         .navigationTitle(user.name)
         .navigationBarTitleDisplayMode(.inline)
     }
+    
 }
 #Preview {
     ContentView()

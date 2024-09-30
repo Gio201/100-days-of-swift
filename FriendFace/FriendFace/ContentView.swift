@@ -9,7 +9,6 @@ import SwiftData
 import SwiftUI
 
 struct ContentView: View {
-    
     @State private var users = [User]()
     
     var body: some View {

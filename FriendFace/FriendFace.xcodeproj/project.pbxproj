@@ -13,6 +13,7 @@
 		F10768882CA6CEC00018E232 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10768872CA6CEC00018E232 /* Preview Assets.xcassets */; };
 		F107688F2CA6CEDE0018E232 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F107688E2CA6CEDE0018E232 /* User.swift */; };
 		F10768912CA6CF830018E232 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10768902CA6CF830018E232 /* DetailView.swift */; };
+		F13641862CAA834700C0FF15 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = F13641852CAA834700C0FF15 /* Friend.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		F10768872CA6CEC00018E232 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F107688E2CA6CEDE0018E232 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F10768902CA6CF830018E232 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		F13641852CAA834700C0FF15 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				F10768812CA6CEBE0018E232 /* ContentView.swift */,
 				F10768902CA6CF830018E232 /* DetailView.swift */,
 				F107688E2CA6CEDE0018E232 /* User.swift */,
+				F13641852CAA834700C0FF15 /* Friend.swift */,
 				F10768832CA6CEC00018E232 /* Assets.xcassets */,
 				F10768852CA6CEC00018E232 /* FriendFace.entitlements */,
 				F10768862CA6CEC00018E232 /* Preview Content */,
@@ -147,6 +150,7 @@
 			files = (
 				F10768822CA6CEBE0018E232 /* ContentView.swift in Sources */,
 				F10768912CA6CF830018E232 /* DetailView.swift in Sources */,
+				F13641862CAA834700C0FF15 /* Friend.swift in Sources */,
 				F10768802CA6CEBE0018E232 /* FriendFaceApp.swift in Sources */,
 				F107688F2CA6CEDE0018E232 /* User.swift in Sources */,
 			);
