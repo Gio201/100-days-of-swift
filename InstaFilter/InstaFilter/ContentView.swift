@@ -48,22 +48,26 @@ struct ContentView: View {
                     Text("Intensity")
                     Slider(value: $filterIntensity)
                         .onChange(of: filterIntensity, applyProcessing)
+                        .disabled(processedImage == nil)
                 }
                 
                 HStack {
                     Text("Radius")
                     Slider(value: $filterRadius)
                         .onChange(of: filterRadius, applyProcessing)
+                        .disabled(processedImage == nil)
                 }
                 
                 HStack {
                     Text("Scale")
                     Slider(value: $filterScale)
                         .onChange(of: filterScale, applyProcessing)
+                        .disabled(processedImage == nil)
                 }
                 
                 HStack {
                     Button("Change Filter", action: changeFilter)
+                        .disabled(processedImage == nil)
                     
                     Spacer()
                     
