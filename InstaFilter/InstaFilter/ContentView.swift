@@ -16,6 +16,7 @@ struct ContentView: View {
     @State private var filterIntensity = 0.5
     @State private var filterRadius = 0.5
     @State private var filterScale = 0.5
+    @State private var filterSharpness = 0.7
     @State private var selectedItem: PhotosPickerItem?
     @State private var showingFilters = false
     
@@ -66,6 +67,14 @@ struct ContentView: View {
                 }
                 
                 HStack {
+                    Text("Sharpness")
+                    Slider(value: $filterSharpness)
+                        .onChange(of: filterSharpness, applyProcessing)
+                        .disabled(processedImage == nil)
+                }
+                
+                
+                HStack {
                     Button("Change Filter", action: changeFilter)
                         .disabled(processedImage == nil)
                     
@@ -86,6 +95,9 @@ struct ContentView: View {
                 Button("Sepia Tone") { setFilter(CIFilter.sepiaTone() )}
                 Button("Unsharp Mask") { setFilter(CIFilter.unsharpMask() )}
                 Button("Vignette") { setFilter(CIFilter.crystallize() )}
+                Button("Dot") { setFilter(CIFilter.dotScreen() )}
+                Button("Box Blur") { setFilter(CIFilter.boxBlur() )}
+                Button("Depth of Field") { setFilter(CIFilter.depthOfField() )}
                 Button("Cancel", role: .cancel) { }
             }
         }
@@ -115,6 +127,8 @@ struct ContentView: View {
             currentFilter.setValue(filterRadius * 200, forKey: kCIInputRadiusKey) }
         if inputKeys.contains(kCIInputScaleKey) {
             currentFilter.setValue(filterScale * 25, forKey: kCIInputScaleKey) }
+        if inputKeys.contains(kCIInputSharpnessKey) {
+            currentFilter.setValue(filterSharpness, forKey: kCIInputSharpnessKey) }
         
         guard let outputImage = currentFilter.outputImage else { return }
         guard let cgImage = context.createCGImage(outputImage, from: outputImage.extent) else { return }
