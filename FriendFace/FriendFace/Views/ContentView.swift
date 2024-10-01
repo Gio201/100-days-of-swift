@@ -9,6 +9,7 @@ import SwiftData
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(\.modelContext) var modelContext
     @State private var users = [User]()
     
     var body: some View {
@@ -26,17 +27,16 @@ struct ContentView: View {
                     }
                 }
             }
-            
             .navigationTitle("FriendFace")
             .task {
                 if let retrievedUsers = await getUsers() {
                     users = retrievedUsers
+                    for user in users {
+                        modelContext.insert(user)
+                    }
+                    try? modelContext.save()
                 }
             }
         }
     }
-}
-
-#Preview {
-    ContentView()
 }

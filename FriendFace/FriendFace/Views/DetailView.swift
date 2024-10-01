@@ -8,9 +8,9 @@
 import SwiftData
 import SwiftUI
 
-
 struct DetailView: View {
-    
+    @Environment(\.modelContext) var modelContext
+
     let user: User
     
     var body: some View {
@@ -49,3 +49,4 @@ struct DetailView: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 }
+
