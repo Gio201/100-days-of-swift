@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F1DB23C72CAD26FA00F104EE /* FaceIDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB23C62CAD26FA00F104EE /* FaceIDView.swift */; };
 		F1DB23C92CAD2B3C00F104EE /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB23C82CAD2B3C00F104EE /* Location.swift */; };
 		F1DB23CB2CAD63A400F104EE /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB23CA2CAD63A400F104EE /* EditView.swift */; };
 		F1DB23CD2CAD688C00F104EE /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DB23CC2CAD688C00F104EE /* Result.swift */; };
@@ -15,10 +14,10 @@
 		F1E4A4002CAC1AF6001058F5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E4A3FF2CAC1AF6001058F5 /* ContentView.swift */; };
 		F1E4A4022CAC1AF8001058F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1E4A4012CAC1AF8001058F5 /* Assets.xcassets */; };
 		F1E4A4062CAC1AF8001058F5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1E4A4052CAC1AF8001058F5 /* Preview Assets.xcassets */; };
+		F1EB78102CAE73480026AB10 /* ContentView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1EB780F2CAE73480026AB10 /* ContentView-ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F1DB23C62CAD26FA00F104EE /* FaceIDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceIDView.swift; sourceTree = "<group>"; };
 		F1DB23C82CAD2B3C00F104EE /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		F1DB23CA2CAD63A400F104EE /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		F1DB23CC2CAD688C00F104EE /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
@@ -28,6 +27,7 @@
 		F1E4A4012CAC1AF8001058F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1E4A4032CAC1AF8001058F5 /* BucketList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BucketList.entitlements; sourceTree = "<group>"; };
 		F1E4A4052CAC1AF8001058F5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F1EB780F2CAE73480026AB10 /* ContentView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView-ViewModel.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,11 +64,11 @@
 				F1E4A3FF2CAC1AF6001058F5 /* ContentView.swift */,
 				F1DB23CA2CAD63A400F104EE /* EditView.swift */,
 				F1DB23CC2CAD688C00F104EE /* Result.swift */,
+				F1EB780F2CAE73480026AB10 /* ContentView-ViewModel.swift */,
 				F1DB23C82CAD2B3C00F104EE /* Location.swift */,
 				F1E4A4012CAC1AF8001058F5 /* Assets.xcassets */,
 				F1E4A4032CAC1AF8001058F5 /* BucketList.entitlements */,
 				F1E4A4042CAC1AF8001058F5 /* Preview Content */,
-				F1DB23C62CAD26FA00F104EE /* FaceIDView.swift */,
 			);
 			path = BucketList;
 			sourceTree = "<group>";
@@ -154,8 +154,8 @@
 				F1DB23CD2CAD688C00F104EE /* Result.swift in Sources */,
 				F1E4A4002CAC1AF6001058F5 /* ContentView.swift in Sources */,
 				F1DB23CB2CAD63A400F104EE /* EditView.swift in Sources */,
-				F1DB23C72CAD26FA00F104EE /* FaceIDView.swift in Sources */,
 				F1DB23C92CAD2B3C00F104EE /* Location.swift in Sources */,
+				F1EB78102CAE73480026AB10 /* ContentView-ViewModel.swift in Sources */,
 				F1E4A3FE2CAC1AF6001058F5 /* BucketListApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,7 +290,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need to unlock your data.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Please authenticate yourself to unlock places.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -329,7 +329,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need to unlock your data.";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "Please authenticate yourself to unlock places.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
