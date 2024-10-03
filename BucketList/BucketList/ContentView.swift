@@ -17,6 +17,10 @@ struct ContentView: View {
     )
     
     @State private var viewModel = ViewModel()
+    
+    @State private var isMapStyleSheetPresented = false
+    @State private var selectedMapStyle: MapStyle = .standard(elevation: .realistic)
+    
         var body: some View {
             if viewModel.isUnlocked {
             MapReader { proxy in
@@ -35,7 +39,7 @@ struct ContentView: View {
                         }
                     }
                 }
-                .mapStyle(.hybrid(elevation: .realistic))
+                .mapStyle(selectedMapStyle)
                 .onTapGesture { position in
                     if let coordinate = proxy.convert(position, from: .local) {
                         viewModel.addLocation(at: coordinate)
@@ -44,6 +48,18 @@ struct ContentView: View {
                 .sheet(item: $viewModel.selectedPlace) { place in
                     EditView(location: place) {
                         viewModel.update(location: $0)
+                    }
+                }
+                HStack(spacing: 50){
+                    Button("Hybrid") {
+                        selectedMapStyle = .hybrid(elevation: .realistic)
+                        isMapStyleSheetPresented = false
+                    }
+                    .padding()
+                    
+                    Button("Standard") {
+                        selectedMapStyle = .standard(elevation: .realistic)
+                        isMapStyleSheetPresented = false
                     }
                 }
             }
