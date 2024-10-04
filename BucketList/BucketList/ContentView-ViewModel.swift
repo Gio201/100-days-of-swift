@@ -15,7 +15,7 @@ extension ContentView {
     class ViewModel {
         private(set) var locations: [Location]
         var selectedPlace: Location?
-        var isUnlocked = true
+        var isUnlocked = false
         
         let savePath = URL.documentsDirectory.appending(path: "SavedPlaces")
         
@@ -56,18 +56,18 @@ extension ContentView {
             let context = LAContext()
             var error: NSError?
             
-            if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-                let reason = "Please authenticate yourself to unlock your places."
-                
-                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { succes, authenticateError in
-                    if succes {
-                        self.isUnlocked = true
+            if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
+                context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: "Please authenticate to unlock your places.") { success, error in
+                    if success {
+                        DispatchQueue.main.async {
+                            self.isUnlocked = true
+                        }
                     } else {
-                        // Error
+                        print("Authentication failed: \(String(describing: error?.localizedDescription))")
                     }
                 }
             } else {
-                // No Biometrics
+                print("No biometrics available.")
             }
         }
     }
