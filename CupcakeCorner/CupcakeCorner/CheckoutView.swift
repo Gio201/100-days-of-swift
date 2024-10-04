@@ -36,6 +36,7 @@ struct CheckoutView: View {
                         await placeOrder()
                     }
                 }
+                .accessibilityHidden(true)
                 .padding()
             }
         }
