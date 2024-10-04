@@ -62,9 +62,9 @@
 			children = (
 				F1E4A3FD2CAC1AF6001058F5 /* BucketListApp.swift */,
 				F1E4A3FF2CAC1AF6001058F5 /* ContentView.swift */,
+				F1EB780F2CAE73480026AB10 /* ContentView-ViewModel.swift */,
 				F1DB23CA2CAD63A400F104EE /* EditView.swift */,
 				F1DB23CC2CAD688C00F104EE /* Result.swift */,
-				F1EB780F2CAE73480026AB10 /* ContentView-ViewModel.swift */,
 				F1DB23C82CAD2B3C00F104EE /* Location.swift */,
 				F1E4A4012CAC1AF8001058F5 /* Assets.xcassets */,
 				F1E4A4032CAC1AF8001058F5 /* BucketList.entitlements */,
@@ -109,7 +109,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					F1E4A3F92CAC1AF6001058F5 = {
 						CreatedOnToolsVersion = 15.4;
@@ -197,6 +197,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -258,6 +259,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -285,6 +287,7 @@
 				CODE_SIGN_ENTITLEMENTS = BucketList/BucketList.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"BucketList/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Q53G635T8;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -324,6 +327,7 @@
 				CODE_SIGN_ENTITLEMENTS = BucketList/BucketList.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"BucketList/Preview Content\"";
 				DEVELOPMENT_TEAM = 3Q53G635T8;
 				ENABLE_HARDENED_RUNTIME = YES;

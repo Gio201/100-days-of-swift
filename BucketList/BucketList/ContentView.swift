@@ -51,14 +51,14 @@ struct ContentView: View {
                     }
                 }
                 HStack(spacing: 50){
-                    Button("Hybrid") {
-                        selectedMapStyle = .hybrid(elevation: .realistic)
+                    Button("Standard") {
+                        selectedMapStyle = .standard(elevation: .realistic)
                         isMapStyleSheetPresented = false
                     }
                     .padding()
                     
-                    Button("Standard") {
-                        selectedMapStyle = .standard(elevation: .realistic)
+                    Button("Hybrid") {
+                        selectedMapStyle = .hybrid(elevation: .realistic)
                         isMapStyleSheetPresented = false
                     }
                 }
