@@ -66,8 +66,8 @@ struct ContentView: View {
         } else {
             Button("Unlock Places", action: viewModel.authenticate)
                 .padding()
-                .background(.blue)
-                .foregroundStyle(.white)
+                .background(.mint.gradient)
+                .foregroundStyle(.black)
                 .clipShape(.capsule)
         }
     }
