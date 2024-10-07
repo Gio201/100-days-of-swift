@@ -7,6 +7,7 @@
 
 import PhotosUI
 import SwiftUI
+import MapKit
 
 struct ContentView: View {
     @StateObject private var viewModel = PhotoLibraryViewModel()
