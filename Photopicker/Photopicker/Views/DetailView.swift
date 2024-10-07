@@ -12,6 +12,9 @@ struct DetailView: View {
     let photo: PhotoItem
     let locationFetcher = LocationFetcher()
     
+    @State private var showingLocationView = false
+    @State private var selectedLocation: CLLocationCoordinate2D?
+    
     var body: some View {
         if let uiImage = UIImage(data: photo.imageData) {
             Image(uiImage: uiImage)
@@ -31,16 +34,24 @@ struct DetailView: View {
         
         Button("Read Location") {
             if let location = locationFetcher.lastKnownLocation {
-                print("Your location is \(location)")
+                selectedLocation = location
+                showingLocationView = true
             } else {
                 print("Your location is unknown")
             }
         }
         .buttonStyle(GrowingButton())
-
+        .sheet(isPresented: $showingLocationView) {
+            if let location = selectedLocation {
+                LocationView(location: location)
+            }
+        }
     }
 }
+
 
 #Preview {
     DetailView(photo: PhotoItem(name: "Test", imageData: Data()))
 }
+
+
