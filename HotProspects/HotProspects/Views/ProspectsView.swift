@@ -16,9 +16,11 @@ struct ProspectsView: View {
     }
     
     @Environment(\.modelContext) var modelContext
-    @Query(sort: \Prospect.name) var prospects: [Prospect]
+    //@Query(sort: \Prospect.name) var prospects: [Prospect]
     @State private var isShowingScanner = false
     @State private var selectedProspects = Set<Prospect>()
+    @State private var sortingOpt = false
+    @Query() var prospects: [Prospect]
     
     let filter: FilterType
     
@@ -35,7 +37,7 @@ struct ProspectsView: View {
     
     var body: some View {
         NavigationStack {
-            List(prospects, selection: $selectedProspects) { prospect in
+            List((sortingOpt ? prospects.sorted() : prospects), selection: $selectedProspects){ prospect in
                 HStack {
                     NavigationLink {
                         EditProspectView(prospect: prospect)
@@ -48,6 +50,8 @@ struct ProspectsView: View {
                                 .foregroundStyle(.secondary)
                         }
                     }
+                    
+                    Spacer()
                     Spacer()
                     
                     Image(systemName: prospect.isContacted ? "person.crop.circle.fill.badge.checkmark" : "person.crop.circle.badge.xmark")
@@ -82,6 +86,12 @@ struct ProspectsView: View {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Scan", systemImage: "qrcode.viewfinder") {
                         isShowingScanner = true
+                    }
+                }
+                
+                ToolbarItem(placement: .topBarTrailing){
+                    Button("Sort", systemImage: "list.bullet.indent"){
+                        sortingOpt.toggle()
                     }
                 }
                 
@@ -174,21 +184,3 @@ struct ProspectsView: View {
     ProspectsView(filter: .none)
         .modelContainer(for: Prospect.self)
 }
-
-
-
-//                .swipeActions {
-//                    // ... existing swipe actions ...
-//                }
-//                .tag(prospect)
-//            }
-//            .navigationTitle(title)
-//            .toolbar {
-//                // ... existing toolbar items ...
-//            }
-//            // ... existing scanner sheet ...
-//        }
-//    }
-//
-//    // ... existing functions ...
-//}
