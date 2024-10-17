@@ -16,12 +16,12 @@ struct ProspectsView: View {
     }
     
     @Environment(\.modelContext) var modelContext
+    @Query() var prospects: [Prospect]
     //@Query(sort: \Prospect.name) var prospects: [Prospect]
     @State private var isShowingScanner = false
     @State private var selectedProspects = Set<Prospect>()
     @State private var sortingOpt = false
-    @Query() var prospects: [Prospect]
-    
+
     let filter: FilterType
     
     var title: String {
