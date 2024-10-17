@@ -37,14 +37,17 @@ struct ProspectsView: View {
         NavigationStack {
             List(prospects, selection: $selectedProspects) { prospect in
                 HStack {
-                    VStack(alignment: .leading) {
-                        Text(prospect.name)
-                            .font(.headline)
-                        
-                        Text(prospect.emailAddress)
-                            .foregroundStyle(.secondary)
+                    NavigationLink {
+                        EditProspectView(prospect: prospect)
+                    } label : {
+                        VStack(alignment: .leading) {
+                            Text(prospect.name)
+                                .font(.headline)
+                            
+                            Text(prospect.emailAddress)
+                                .foregroundStyle(.secondary)
+                        }
                     }
-                    
                     Spacer()
                     
                     Image(systemName: prospect.isContacted ? "person.crop.circle.fill.badge.checkmark" : "person.crop.circle.badge.xmark")
@@ -143,7 +146,7 @@ struct ProspectsView: View {
             
 //            var dateCompontents = DateComponents()
 //            dateCompontents.hour = 9
-//            
+            
 //            let trigger = UNCalendarNotificationTrigger(dateMatching: dateCompontents, repeats: false)
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
             
@@ -172,3 +175,20 @@ struct ProspectsView: View {
         .modelContainer(for: Prospect.self)
 }
 
+
+
+//                .swipeActions {
+//                    // ... existing swipe actions ...
+//                }
+//                .tag(prospect)
+//            }
+//            .navigationTitle(title)
+//            .toolbar {
+//                // ... existing toolbar items ...
+//            }
+//            // ... existing scanner sheet ...
+//        }
+//    }
+//
+//    // ... existing functions ...
+//}
