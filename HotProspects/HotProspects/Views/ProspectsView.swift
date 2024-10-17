@@ -36,12 +36,19 @@ struct ProspectsView: View {
     var body: some View {
         NavigationStack {
             List(prospects, selection: $selectedProspects) { prospect in
-                VStack(alignment: .leading) {
-                    Text(prospect.name)
-                        .font(.headline)
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(prospect.name)
+                            .font(.headline)
+                        
+                        Text(prospect.emailAddress)
+                            .foregroundStyle(.secondary)
+                    }
                     
-                    Text(prospect.emailAddress)
-                        .foregroundStyle(.secondary)
+                    Spacer()
+                    
+                    Image(systemName: prospect.isContacted ? "person.crop.circle.fill.badge.checkmark" : "person.crop.circle.badge.xmark")
+                        .foregroundColor(prospect.isContacted ? .green : .blue)
                 }
                 .swipeActions {
                     Button("Delete", systemImage: "trash", role: .destructive) {
@@ -164,3 +171,4 @@ struct ProspectsView: View {
     ProspectsView(filter: .none)
         .modelContainer(for: Prospect.self)
 }
+
