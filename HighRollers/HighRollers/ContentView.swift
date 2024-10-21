@@ -26,6 +26,8 @@ struct ContentView: View {
                     }
                 }
                 .pickerStyle(.menu)
+                .accentColor(.white)
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.orange))
                 .padding()
 
                 // Dice Type Picker
@@ -34,7 +36,9 @@ struct ContentView: View {
                         Text("\(type)-sided")
                     }
                 }
-                .pickerStyle(.automatic)
+                .pickerStyle(.menu)
+                .accentColor(.white)
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.orange))
                 .padding()
                 
                 // Roll Button
@@ -42,8 +46,8 @@ struct ContentView: View {
                     Text("Roll the Dice!")
                         .font(.title2)
                         .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
+                        .background(Color.mint)
+                        .foregroundColor(.white).bold()
                         .cornerRadius(10)
                 }
 
@@ -60,12 +64,20 @@ struct ContentView: View {
                 List {
                     Section(header: Text("Previous Rolls")) {
                         ForEach(previousRolls, id: \.self) { roll in
-                            Text(roll.map { String($0) }.joined(separator: ", "))
+                            Text(roll.map { String($0) }.joined(separator: ",  "))
                         }
                     }
                 }
             }
-            .navigationTitle("HighRollers")
+            .navigationTitle("HighRollers 🎲")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Clear Rolls") {
+                        previousRolls.removeAll()
+                    }
+                }
+            }
         }
     }
 
