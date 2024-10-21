@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    let colors: [Color] = [.red, .green, .blue, .orange, .pink, .purple, .yellow]
 
     var body: some View {
         GeometryReader { fullView in
@@ -18,11 +17,13 @@ struct ContentView: View {
                         let minY = proxy.frame(in: .global).minY
                         let opacity = Double(min(max((minY - 200) / 100, 0), 1))
                         let scale = max(minY / fullView.size.height, 0.5)
+                        let hue = minY / fullView.size.height
+                        let dynamicColor = Color(hue: hue, saturation: 0.4, brightness: 1)
 
                         Text("Row #\(index)")
                             .font(.title)
                             .frame(maxWidth: .infinity)
-                            .background(colors[index % 7])
+                            .background(dynamicColor)
                             .rotation3DEffect(.degrees(minY - fullView.size.height / 2) / 5, axis: (x: 0, y: 1, z: 0))
                             .opacity(opacity)
                             .scaleEffect(scale)
