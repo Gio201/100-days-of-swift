@@ -14,7 +14,7 @@ struct CardView: View {
     @State private var isShowingAnswer = false
     
     let card: Card
-    var removal: (() -> Void)? = nil
+    var removal: ((Bool) -> Void)? = nil
     
     var body: some View {
         ZStack {
@@ -65,7 +65,9 @@ struct CardView: View {
                 }
                 .onEnded { _ in
                     if abs(offset.width) > 100 {
-                        removal?()
+                        if let removal = removal {
+                            removal(offset.width > 0)
+                        }
                     } else {
                         withAnimation(.spring()) {
                             offset = .zero

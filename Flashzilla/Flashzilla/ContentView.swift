@@ -43,15 +43,15 @@ struct ContentView: View {
                     .clipShape(.capsule)
                 
                 ZStack {
-                    ForEach(0..<cards.count, id: \.self) { index in
-                        CardView(card: cards[index]) {
+                    ForEach(cards) { card in
+                        CardView(card: card) { isCorrect in
                             withAnimation {
-                                removeCard(at: index)
+                                removeCard(card, wasCorrect: isCorrect)
                             }
                         }
-                        .stacked(at: index, in: cards.count)
-                        .allowsHitTesting(index == cards.count - 1)
-                        .accessibilityHidden(index < cards.count - 1)
+                        .stacked(at: cards.firstIndex(of: card) ?? 0, in: cards.count)
+                        .allowsHitTesting(cards.last == card)
+                        .accessibilityHidden(cards.last != card)
                     }
                 }
                 .allowsHitTesting(timeRemaining > 0)
@@ -92,7 +92,7 @@ struct ContentView: View {
                     HStack {
                         Button {
                             withAnimation {
-                                removeCard(at: cards.count - 1)
+                                removeCard(cards.last!, wasCorrect: false)
                             }
                         } label: {
                             Image(systemName: "xmark.circle")
@@ -101,13 +101,13 @@ struct ContentView: View {
                                 .clipShape(.circle)
                         }
                         .accessibilityLabel("Wrong")
-                        .accessibilityHint("Mark your anwser as being incorrect.")
+                        .accessibilityHint("Mark your answer as being incorrect.")
                         
                         Spacer()
                         
                         Button {
                             withAnimation {
-                                removeCard(at: cards.count - 1)
+                                removeCard(cards.last!, wasCorrect: true)
                             }
                         } label: {
                             Image(systemName: "checkmark.circle")
@@ -133,7 +133,7 @@ struct ContentView: View {
         }
         .onChange(of: scenePhase) {
             if scenePhase == .active {
-                if cards.isEmpty == false {
+                if !cards.isEmpty {
                     isActive = true
                 }
             } else {
@@ -144,16 +144,22 @@ struct ContentView: View {
         .onAppear(perform: resetCards)
     }
     
-    func removeCard(at index: Int) {
-        guard index >= 0 else { return }
+    func removeCard(_ card: Card, wasCorrect: Bool) {
+        guard let index = cards.firstIndex(of: card) else { return }
         
-        cards.remove(at: index)
-        
+        if !wasCorrect {
+            let newCard = Card(id: UUID(), prompt: card.prompt, answer: card.answer)
+            cards.remove(at: index)
+            cards.insert(newCard, at: 0)
+        } else {
+            cards.remove(at: index)
+        }
+
         if cards.isEmpty {
             isActive = false
         }
     }
-    
+
     func resetCards() {
         timeRemaining = 100
         isActive = true
