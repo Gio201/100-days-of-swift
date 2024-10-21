@@ -17,13 +17,15 @@ struct ContentView: View {
                     GeometryReader { proxy in
                         let minY = proxy.frame(in: .global).minY
                         let opacity = Double(min(max((minY - 200) / 100, 0), 1))
-                        
+                        let scale = max(minY / fullView.size.height, 0.5)
+
                         Text("Row #\(index)")
                             .font(.title)
                             .frame(maxWidth: .infinity)
                             .background(colors[index % 7])
                             .rotation3DEffect(.degrees(minY - fullView.size.height / 2) / 5, axis: (x: 0, y: 1, z: 0))
                             .opacity(opacity)
+                            .scaleEffect(scale)
                     }
                     .frame(height: 40)
                 }
