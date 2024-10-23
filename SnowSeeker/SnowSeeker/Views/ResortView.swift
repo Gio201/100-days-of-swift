@@ -16,13 +16,14 @@ struct ResortView: View {
     
     @State private var selectedFacility: Facility?
     @State private var showingFacility = false
-
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 Image(decorative: resort.id)
                     .resizable()
                     .scaledToFit()
+                    .overlay(ImageCredit(resort: resort), alignment: .bottomLeading)
                 
                 HStack {
                     if horizontalSizeClass == .compact && dynamicTypeSize > .large {
