@@ -7,6 +7,7 @@
 
 import SwiftData
 import SwiftUI
+import UIKit
 
 struct ContentView: View {
     @State private var numberOfDice = 1
@@ -86,6 +87,10 @@ struct ContentView: View {
 
     // Rolling dice logic
     func rollDice() {
+        // Haptic feedback when you roll the dice
+        let impactFeedback = UIImpactFeedbackGenerator(style: .heavy)
+        impactFeedback.impactOccurred()
+
         rollResults = (0...numberOfDice).map { _ in
             Int.random(in: 1...diceType)
         }
@@ -107,4 +112,3 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
-
