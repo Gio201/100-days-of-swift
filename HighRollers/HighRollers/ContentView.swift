@@ -5,6 +5,7 @@
 //  Created by WeMa Mobile on 21/10/2024.
 //
 
+import SwiftData
 import SwiftUI
 
 struct ContentView: View {
@@ -12,7 +13,9 @@ struct ContentView: View {
     @State private var diceType = 6
     @State private var rollResults = [Int]()
     @State private var totalRolled = 0
-    @State private var previousRolls: [[Int]] = []
+    
+    @Environment(\.modelContext) private var modelContext // For the swiftdata
+    @Query private var previousRolls: [Roll]
     
     let diceTypes = [4, 6, 8, 10, 12, 20, 100]
 
@@ -63,8 +66,8 @@ struct ContentView: View {
                 // Previous Rolls
                 List {
                     Section(header: Text("Previous Rolls")) {
-                        ForEach(previousRolls, id: \.self) { roll in
-                            Text(roll.map { String($0) }.joined(separator: ",  "))
+                        ForEach(previousRolls) { roll in
+                            Text(roll.rollResults.map { String($0) }.joined(separator: ",  "))
                         }
                     }
                 }
@@ -74,7 +77,7 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     Button("Clear Rolls") {
-                        previousRolls.removeAll()
+                        clearRolls()
                     }
                 }
             }
@@ -87,10 +90,21 @@ struct ContentView: View {
             Int.random(in: 1...diceType)
         }
         totalRolled = rollResults.reduce(0, +)
-        previousRolls.append(rollResults)
+
+        // saves the rolls in swiftdata
+        let newRoll = Roll(rollResults: rollResults, totalRolled: totalRolled)
+        modelContext.insert(newRoll)
+    }
+
+    // clears the rolls from swiftdata
+    func clearRolls() {
+        for roll in previousRolls {
+            modelContext.delete(roll)
+        }
     }
 }
 
 #Preview {
     ContentView()
 }
+
