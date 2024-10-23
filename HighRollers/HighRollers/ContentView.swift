@@ -91,17 +91,37 @@ struct ContentView: View {
         let impactFeedback = UIImpactFeedbackGenerator(style: .heavy)
         impactFeedback.impactOccurred()
 
-        rollResults = (0...numberOfDice).map { _ in
-            Int.random(in: 1...diceType)
+        var flickerCount = 0
+        let maxFlickerCount = 10 // so many times it needs to flicker before giving out a result
+        
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+            flickerCount += 1
+            
+            // Generate random flicker number
+            rollResults = (0..<numberOfDice).map { _ in
+                Int.random(in: 1...diceType)
+            }
+            totalRolled = rollResults.reduce(0, +)
+            
+            // Stops the flickering
+            if flickerCount >= maxFlickerCount {
+                timer.invalidate()
+                
+                // Roll results
+                rollResults = (0..<numberOfDice).map { _ in
+                    Int.random(in: 1...diceType)
+                }
+                totalRolled = rollResults.reduce(0, +)
+                
+                // Saves the rolls in swiftData
+                let newRoll = Roll(rollResults: rollResults, totalRolled: totalRolled)
+                modelContext.insert(newRoll)
+            }
         }
-        totalRolled = rollResults.reduce(0, +)
-
-        // saves the rolls in swiftdata
-        let newRoll = Roll(rollResults: rollResults, totalRolled: totalRolled)
-        modelContext.insert(newRoll)
     }
 
-    // clears the rolls from swiftdata
+
+    // Clears the rolls from swiftdata
     func clearRolls() {
         for roll in previousRolls {
             modelContext.delete(roll)
