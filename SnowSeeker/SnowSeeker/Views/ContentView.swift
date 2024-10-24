@@ -12,12 +12,15 @@ struct ContentView: View {
     
     @State private var favorites = Favorites()
     @State private var searchText = ""
+    @State private var sortType: SortType = .default
     
     var filteredResorts: [Resort] {
+        let sortedResorts = ResortSorter.sort(resorts: resorts, by: sortType)
+        
         if searchText.isEmpty {
-            resorts
+            return sortedResorts
         } else {
-            resorts.filter { $0.name.localizedStandardContains(searchText) }
+            return sortedResorts.filter { $0.name.localizedStandardContains(searchText) }
         }
     }
     
@@ -60,6 +63,16 @@ struct ContentView: View {
                 ResortView(resort: resort)
             }
             .searchable(text: $searchText, prompt: "Search for a resort")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Picker("Sort by", selection: $sortType) {
+                        ForEach(SortType.allCases) { sort in
+                            Text(sort.rawValue).tag(sort)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                }
+            }
         } detail: {
             WelcomeView()
         }
